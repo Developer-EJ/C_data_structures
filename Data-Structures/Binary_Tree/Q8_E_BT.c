@@ -8,6 +8,7 @@ Purpose: Implementing the required functions for Question 8 */
 
 #include <stdio.h>
 #include <stdlib.h>
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -103,6 +104,11 @@ int main()
 int hasGreatGrandchild(BTNode *node)
 {
 	/* add your code here */
+    if (node == NULL) return -1;
+    
+    int degree = 1 + MAX(hasGreatGrandchild(node->left), hasGreatGrandchild(node->right));
+    if (degree >= 3) printf(" %d", node->item);
+    return degree;
 }
 
 //////////////////////////////////////////////////////////////////////////////////

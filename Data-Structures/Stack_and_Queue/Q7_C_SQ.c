@@ -104,7 +104,47 @@ int main()
 ////////////////////////////////////////////////////////////
 int balanced(char *expression)
 {
-/* add your code here */
+    if (expression == NULL) return 0;
+
+    Stack s;
+    s.ll.head = NULL;
+    s.ll.size = 0;
+
+    while (*expression != '\0') {
+        switch (*expression) {
+        case '(':
+        case '{':
+        case '[':
+            push(&s, *expression);
+            break;
+
+        case ')':
+            if (isEmptyStack(&s)) return 1;
+            if (peek(&s) != '(') return 1;
+            pop(&s);
+            break;
+
+        case '}':
+            if (isEmptyStack(&s)) return 1;
+            if (peek(&s) != '{') return 1;
+            pop(&s);
+            break;
+
+        case ']':
+            if (isEmptyStack(&s)) return 1;
+            if (peek(&s) != '[') return 1;
+            pop(&s);
+            break;
+
+        default:
+            return 1;
+        }
+        expression++;
+    }
+
+	// 비어있으면(순회를 마쳤을 때) 1 return 
+    if (isEmptyStack(&s)) return 0;
+	else return 1;
 }
 
 ////////////////////////////////////////////////////////////

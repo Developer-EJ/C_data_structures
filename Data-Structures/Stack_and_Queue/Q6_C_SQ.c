@@ -112,6 +112,14 @@ int main()
 void removeUntil(Stack *s, int value)
 {
 /* add your code here */
+	if (s == NULL || s->ll.head == NULL) return;
+	
+	// 스택을 순회하면서 값 탐색
+	while (s->ll.head != NULL){
+		int pop_value = peek(s);
+		if (pop_value == value) break;
+		else pop(s);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////

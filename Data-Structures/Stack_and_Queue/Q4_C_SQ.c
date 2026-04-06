@@ -113,6 +113,28 @@ int main()
 void reverse(Queue *q)
 {
 /* add your code here */
+	if (q == NULL || q->ll.head == NULL) return;
+	// 스택 선언 및 초기화
+	Stack s;
+	s.ll.head =NULL;
+	s.ll.size =0;
+	s.ll.tail=NULL;
+
+	while(!isEmptyStack(&s)){
+		pop(&s);
+	}
+
+	// 큐에 있는 모든 요소를 스택에 넣기
+	while(q->ll.head != NULL){
+		int enq = dequeue(q);
+		push(&s, enq);
+	}
+
+	// 큐에 스택 값을 순서대로 enqueue
+	while(s.ll.head != NULL){
+		int pop_value = pop(&s);
+		enqueue(q, pop_value);
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

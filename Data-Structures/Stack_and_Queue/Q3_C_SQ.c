@@ -104,6 +104,15 @@ int main()
 int isStackPairwiseConsecutive(Stack *s)
 {
   /* add your code here */
+  // 스택 크기가 홀수면 무조건 거짓 출력
+	if(s->ll.size % 2 == 1 || s->ll.head == NULL) return 0;
+
+	while (s->ll.head != NULL){
+		int a = pop(s);
+		int b = pop(s);
+		if (abs(a-b) != 1) return 0; 
+	}
+	return 1;
 }
 
 //////////////////////////////////////////////////////////////////////////////////

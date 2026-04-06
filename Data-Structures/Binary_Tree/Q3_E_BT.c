@@ -100,8 +100,22 @@ int main()
 
 int countOneChildNodes(BTNode *node)
 
-{
+{   
     /* add your code here */
+    // 루트가 null일 때 바로 return
+    if (node == NULL) return 0;
+    if (node->left != NULL && node->right == NULL){
+        return (1 + countOneChildNodes(node->left));
+    }
+    else if (node->left == NULL && node->right != NULL){
+        return (1 + countOneChildNodes(node->right));
+    }
+    else if (node->left == NULL && node->right == NULL){
+        return 0;
+    }
+    else{
+        return (countOneChildNodes(node->left) + countOneChildNodes(node->right));
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
