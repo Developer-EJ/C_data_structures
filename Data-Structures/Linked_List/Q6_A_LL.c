@@ -88,7 +88,32 @@ int main()
 
 int moveMaxToFront(ListNode **ptrHead)
 {
-    /* add your code here */
+    if (*ptrHead == NULL) return 0;
+
+	ListNode *cur = *ptrHead;
+	ListNode *prev = NULL;
+	ListNode *max = *ptrHead;
+	ListNode *max_prev = NULL;
+	// 1. 최대값 노드 찾기
+	while (cur != NULL) {
+		if (cur->item > max->item) {
+			max_prev = prev;
+			max = cur;
+		}
+		prev = cur;
+		cur = cur->next;
+	}
+	// 2. 최대값 노드 떼어내기
+	// 만약 HEAD가 이미 최대값이면 1 return
+	if (max_prev == NULL) return 1;
+	max_prev->next = max->next;
+
+	// 3. 최대값 노드의 next를 헤드로 지정
+	max->next = *ptrHead;
+
+	// 4. 헤드 포인터가 최대값 노드를 가리키도록 업데이트
+	*ptrHead = max;
+	
 }
 
 //////////////////////////////////////////////////////////////////////////////////
